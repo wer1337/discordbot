@@ -1,35 +1,21 @@
-import asyncio
 import datetime
 from re import S
 import discord
 from discord.ext import commands
-import logging
 from logging.handlers import RotatingFileHandler
-import sys
-import os
 import yaml
 import random
+import numpy as np
+
+from util.basic_util import fireball
 
 APP_CONFIG = None
 bot = commands.Bot('~')
 
-### Move these func to utils
-
-def fireball():
-    fireball_arr = []
-    sum_ = 0
-    for i in range(8):
-        rand_num =  random.randint(1, 6)
-        fireball_arr.apppend(rand_num)
-        sum_ += rand_num
-
-    fireball_arr.append(sum_)
-
-    return fireball_arr
 
 class DiscordBot():
     def __init__(self, *args, **kwargs) -> None:
-        self,uptime = datetime.datetime.utcnow
+        self.uptime = datetime.datetime.utcnow
         super().__init__(*args, **kwargs)
 
 
@@ -56,6 +42,10 @@ async def roll(ctx, dice=None):
     author = ctx.message.author.display_name
     if dice is None:
         await ctx.send(f"{author} has an initiative of {random.randint(1,20)}")
+    
+    if dice == 'fireball':
+        fb = fireball()
+        await ctx.send(f'{author} casts fireball for {fb[0]} + {fb[1]} + {fb[2]} + {fb[3]} + {fb[4]} + {fb[5]} + {fb[6]} + {fb[7]} = {np.sum(fb)} ')
 
 @bot.command(pass_context=True)
 async def rps(ctx, throw=""):
@@ -91,7 +81,7 @@ async def commands(ctx):
 
 if __name__ == '__main__':
     with open("app_config.yml", "r") as config_file:
-        APPP_CONFIG = yaml.safe_load(config_file)
+        APP_CONFIG = yaml.safe_load(config_file)
     
     try:
         bot.run(APP_CONFIG.get("bot_token"))
