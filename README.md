@@ -1,4 +1,4 @@
-# Xtra Fun Super Unique Notworthy Bot Operative
+# Xtra Fun Super Unique Noteworthy Bot Operative
 
 ## INSTALLATION
 
@@ -23,5 +23,3 @@ Feel free to contribute as there should be plenty of versitility when the COGS o
 
 ## License
 Distributed  under the MIT License. See ```LICENSE``` for more information.
-
-xfsunbo
