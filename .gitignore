@@ -48,3 +48,11 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Virtual Environments
+chatvenv
+
+# YAML files
+*.yml
+
+# VS Code stuff 
+.vscode
