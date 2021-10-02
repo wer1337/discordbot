@@ -2,8 +2,9 @@ import datetime
 from re import S
 import discord
 from discord.ext import commands
-from logging.handlers import RotatingFileHandler
 import yaml
+
+from util.FileIO import Config
 
 APP_CONFIG = None
 
@@ -20,6 +21,7 @@ def bot_init():
     for cog in APP_CONFIG.get("cogs", []):
         try:
             bot.load_extension(cog)
+            print(f'Loaded {cog}')
         except Exception:
             print(f"Failed to load in cog: {cog}")
 
@@ -48,9 +50,9 @@ def bot_init():
     return bot
 
 if __name__ == '__main__':
-    with open("app_config.yml", "r") as config_file:
-        APP_CONFIG = yaml.safe_load(config_file)
-        
+    configs = Config()
+    APP_CONFIG = configs.open_yaml()
+
     bot = bot_init()
     bot.run(APP_CONFIG.get("bot_token"))
     
