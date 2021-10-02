@@ -1,10 +1,9 @@
 from discord.ext import commands
-from util.basic_util import fireball
 from numpy import random
 import numpy as np
 
 
-class OutsideWork:
+class OutsideWork(commands.Cog):
     
     def __init__(self, bot):
         self.bot = bot
@@ -24,7 +23,7 @@ class OutsideWork:
             await ctx.send(f"{author} has an initiative of {random.randint(1,20)}")
         
         if dice == 'fireball':
-            fb = fireball()
+            fb = random.randint(1, 6, size=(8))
             await ctx.send(f'{author} casts fireball for {fb[0]} + {fb[1]} + {fb[2]} + {fb[3]} + {fb[4]} + {fb[5]} + {fb[6]} + {fb[7]} = {np.sum(fb)} ')
 
 

@@ -18,7 +18,6 @@ def bot_init():
     bot = DiscordBot(command_prefix='~', description='Random Bot for Random Fun')
 
     for cog in APP_CONFIG.get("cogs", []):
-        print(cog)
         try:
             bot.load_extension(cog)
         except Exception:
@@ -45,17 +44,17 @@ def bot_init():
         embed.add_field(name="~rps <rps>", value = "Play rps against xfsunbo, options = [rock, paper, scissors]", inline = False)
 
         await ctx.send(embed=embed)
+        
+    return bot
 
 if __name__ == '__main__':
     with open("app_config.yml", "r") as config_file:
         APP_CONFIG = yaml.safe_load(config_file)
         
     bot = bot_init()
+    bot.run(APP_CONFIG.get("bot_token"))
     
-    # bot.run(APP_CONFIG.get("bot_token"))
-    
-    # try:
-    #     bot.run(APP_CONFIG.get("bot_token"))
-    # except Exception as ex:
-    #     print(f"Exception occured trying to run. {repr(ex)}")
-
+    try:
+        bot.run(APP_CONFIG.get("bot_token"))
+    except Exception as ex:
+        print(f"Exception occured trying to run. {repr(ex)}")
