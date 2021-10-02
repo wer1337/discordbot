@@ -1,8 +1,6 @@
 import datetime
-from re import S
 import discord
 from discord.ext import commands
-import yaml
 
 from util.FileIO import Config
 
