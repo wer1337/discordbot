@@ -13,8 +13,8 @@ APP_CONFIG = None
 bot = commands.Bot('~')
 
 
-class DiscordBot():
-    def __init__(self, *args, **kwargs) -> None:
+class DiscordBot(commands.Bot):
+    def __init__(self, *args, **kwargs):
         self.uptime = datetime.datetime.utcnow
         super().__init__(*args, **kwargs)
 
@@ -66,8 +66,8 @@ async def rps(ctx, throw=""):
     else:
         await ctx.send(f"Your {throw} ties with xfsunbo's {throw}. :face_with_raised_eyebrow:")
 
-@bot.command(pass_context=True)
-async def commands(ctx):
+@bot.command(name="Commands", pass_context=True)
+async def commands_(ctx):
     embed = discord.Embed(
         colour = discord.Colour.red()
     )
