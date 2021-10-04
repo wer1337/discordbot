@@ -4,7 +4,9 @@
 
 1. Get an API key from [Discord](https://discord.com/developers/applications)
 2. ```pip install -r requirements.txt```
-3. ```chat_bot.py```
+3. Rename app_config.yml.example to app_config.yml and paste your API key in the token field
+4. ```chat_bot.py```
+
 
 ## USAGES
 
